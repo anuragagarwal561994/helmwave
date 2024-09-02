@@ -53,6 +53,12 @@ func NewCfg(ns, kubecontext string) (*action.Configuration, error) {
 	config.Namespace = &ns
 	config.Context = &kubecontext
 
+	if Helm.KubeAPIServer != "" {
+		config.APIServer = &Helm.KubeAPIServer
+	}
+
+	config.Insecure = &Helm.KubeInsecureSkipTLSVerify
+
 	if Helm.Debug {
 		helmLogLevel = log.Infof
 	}
