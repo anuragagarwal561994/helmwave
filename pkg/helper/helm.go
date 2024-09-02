@@ -57,6 +57,10 @@ func NewCfg(ns, kubecontext string) (*action.Configuration, error) {
 		config.APIServer = &Helm.KubeAPIServer
 	}
 
+	if Helm.KubeToken != "" {
+		config.BearerToken = &Helm.KubeToken
+	}
+
 	config.Insecure = &Helm.KubeInsecureSkipTLSVerify
 
 	if Helm.Debug {
